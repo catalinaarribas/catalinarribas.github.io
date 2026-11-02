@@ -3,9 +3,27 @@
 const page=location.pathname.split('/').pop()||'index.html', storage='catalina-editor-v1';
 const editing=new URLSearchParams(location.search).has('edit');
 const candidates=[...document.querySelectorAll('main h2, main .about-title, main .project-overlay-title, main .project-meta strong, main .detail-role, main .about-copy p, main .eyebrow, main .gallery img, main .project-image img, main .hero, main .section-banner, main>section:first-child')];
-const targets=[];let counters={};
-for(const el of candidates){let type=el.tagName==='IMG'?'photo':(el.classList.contains('hero')||el.classList.contains('section-banner')||(el.tagName==='SECTION'&&el===document.querySelector('main>section:first-child'))?'background':'text');
- let key=type+'-'+(++counters[type]); el.dataset.editKey=key;targets.push({el,key,type});}
+const targets = [];
+let counters = {};
+
+for (const el of candidates) {
+  const type = el.tagName === 'IMG'
+    ? 'photo'
+    : (
+        el.classList.contains('hero') ||
+        el.classList.contains('section-banner') ||
+        (el.tagName === 'SECTION' &&
+         el === document.querySelector('main > section:first-child'))
+      )
+      ? 'background'
+      : 'text';
+
+  const key = type + '-' + (++counters[type]);
+
+  el.dataset.editKey = key;
+
+  targets.push({ el, key, type });
+}
 let state={};try{state=JSON.parse(localStorage.getItem(storage)||'{}')}catch(e){}
 const selector=(p,k)=>`body[data-editor-page="${p}"] [data-edit-key="${k}"]`;
 document.body.dataset.editorPage=page;
@@ -58,7 +76,13 @@ function select(t){if(selected)selected.el.classList.remove('editor-selected');s
 document.addEventListener('click', e => {
   if (e.target.closest('#c-editor')) return;
 
-  const element = e.target.closest('[data-edit-key]');
+  const elements = e.composedPath();
+
+  const element = elements.find(
+    el => el instanceof HTMLElement &&
+    el.hasAttribute('data-edit-key')
+  );
+
   if (!element) return;
 
   const target = targets.find(t => t.el === element);
