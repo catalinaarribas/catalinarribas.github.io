@@ -1,11 +1,9 @@
 (()=>{
 'use strict';
-const page=location.pathname.split('/').pop()||'index.html', storage='catalina-editor-v1';
+const page=location.pathname.split('/').pop()||'index.html', storage='catalina-editor-v2';
 const editing=new URLSearchParams(location.search).has('edit');
-const candidates=[...document.querySelectorAll('main h2, main .about-title, main .project-overlay-title, main .project-meta strong, main .detail-role, main .about-copy p, main .eyebrow, main .gallery img, main .project-image img, main .hero, main .section-banner, main>section:first-child')];
-const targets = [];
+const candidates = [...new Set(document.querySelectorAll('main h2, main .about-title, main .project-overlay-title, main .project-meta strong, main .detail-role, main .about-copy p, main .eyebrow, main .gallery img, main .project-image img, main .hero, main .section-banner, main > section:first-child'))];
 let counters = {};
-
 for (const el of candidates) {
   const type = el.tagName === 'IMG'
     ? 'photo'
@@ -17,11 +15,8 @@ for (const el of candidates) {
       )
       ? 'background'
       : 'text';
-
   const key = type + '-' + (++counters[type]);
-
   el.dataset.editKey = key;
-
   targets.push({ el, key, type });
 }
 let state={};try{state=JSON.parse(localStorage.getItem(storage)||'{}')}catch(e){}
@@ -50,9 +45,7 @@ document.querySelectorAll('a[href]').forEach(link => {
   if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) {
     return;
   }
-
   const url = new URL(href, location.href);
-
   if (url.origin === location.origin && url.pathname.endsWith('.html')) {
     url.searchParams.set('edit', '1');
     link.href = url.href;
@@ -75,22 +68,16 @@ for(const [id,min,max,val] of [['x',text?-300:0,text?300:100,values.x],['y',text
 function select(t){if(selected)selected.el.classList.remove('editor-selected');selected=t;selected.el.classList.add('editor-selected');values=structuredClone(state[page]?.[t.key]||defaults(t.type,t.el));$('editor-controls').classList.add('active');$('editor-desc').textContent=t.type==='text'?'Texto seleccionado: mueve o cambia el tamaño.':'Imagen seleccionada: ajusta el encuadre y el zoom.';setSliders();}
 document.addEventListener('click', e => {
   if (e.target.closest('#c-editor')) return;
-
   const elements = e.composedPath();
-
   const element = elements.find(
     el => el instanceof HTMLElement &&
     el.hasAttribute('data-edit-key')
   );
-
   if (!element) return;
-
   const target = targets.find(t => t.el === element);
   if (!target) return;
-
   e.preventDefault();
   e.stopPropagation();
-
   select(target);
 }, true);
 for(const id of ['x','y','z'])$('inp-'+id).addEventListener('input',()=>{if(!selected)return;const val=Number($('inp-'+id).value);values[id==='z'?(selected.type==='text'?'size':'zoom'):id]=val;state[page]??={};state[page][selected.key]=structuredClone(values);localStorage.setItem(storage,JSON.stringify(state));render();$('val-'+id).textContent=val+(selected.type==='text'?'px':'%');});
