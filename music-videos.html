@@ -94,8 +94,38 @@ main > section:first-child .eyebrow{position:relative;color:#f2f2f2;}
     margin: 0 0 18px;
 }
 
+/* GALERÍAS: TRES FOTOGRAFÍAS POR FILA */
+
 .project-detail .gallery {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 16px !important;
     margin-top: 12px;
+}
+
+.project-detail .gallery figure,
+.project-detail .gallery figure:first-child {
+    grid-column: auto !important;
+    margin: 0 !important;
+}
+
+.project-detail .gallery img,
+.project-detail .gallery figure:first-child img,
+.project-detail .gallery figure:not(:first-child) img {
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4 / 3 !important;
+    object-fit: cover !important;
+    max-height: none !important;
+    margin: 0 !important;
+}
+
+@media (max-width: 700px) {
+    .project-detail .gallery {
+        grid-template-columns: 1fr !important;
+    }
+}
 }
 
 @media (max-width: 700px) {
