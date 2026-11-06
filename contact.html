@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#0b0b0b">
+<meta name="description" content="Contact Catalina Arribas — Art Direction Portfolio.">
+
+<title>Contact — Catalina Arribas</title>
+
+<style>
+:root {
+    --background: #0b0b0b;
+    --text: #f5f5f5;
+    --accent: #e87900;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--background);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* NAVIGATION */
+
+nav {
+    width: 100%;
+    padding: 22px 4%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    background: var(--background);
+    position: relative;
+    z-index: 10;
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+.nav-logo {
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+/* FULL WIDTH HEADER IMAGE */
+
+.contact-header {
+    width: 100vw;
+    height: clamp(300px, 55vw, 650px);
+    margin-left: calc(50% - 50vw);
+    overflow: hidden;
+}
+
+.contact-header img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* CONTACT CONTENT */
+
+.contact-content {
+    padding: 100px 8% 130px;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.kicker {
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.contact-content h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(55px, 9vw, 115px);
+    font-weight: 400;
+    line-height: 0.95;
+    margin: 0 0 55px;
+}
+
+.contact-intro {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+}
+
+.contact-details a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    overflow-wrap: anywhere;
+}
+
+.contact-details a:hover {
+    color: var(--accent);
+}
+
+.email {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(22px, 3vw, 42px);
+}
+
+.phone {
+    font-size: clamp(20px, 2.5vw, 36px);
+}
+
+/* FOOTER */
+
+footer {
+    padding: 25px 4%;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    color: #999;
+}
+
+footer a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: var(--accent);
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    nav {
+        padding: 18px 5%;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .nav-links {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    nav a {
+        font-size: 9px;
+    }
+
+    .contact-header {
+        height: 65vw;
+        min-height: 250px;
+    }
+
+    .contact-content {
+        padding: 75px 6% 90px;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: flex-start;
+        line-height: 1.6;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+
+    <a href="index.html" class="nav-logo">
+        CATALINA ARRIBAS
+    </a>
+
+    <div class="nav-links">
+
+        <a href="index.html#about">About Me</a>
+
+        <a href="advertising.html">Advertising</a>
+
+        <a href="fiction.html">Fiction</a>
+
+        <a href="music-videos.html">Music Videos</a>
+
+        <a href="contact.html">Contact</a>
+
+    </div>
+
+</nav>
+
+
+<!-- FULL WIDTH HEADER IMAGE -->
+
+<section class="contact-header">
+
+    <img
+        src="assets/contact-header.jpg"
+        alt="Catalina Arribas — Contact"
+    >
+
+</section>
+
+
+<!-- CONTACT INFORMATION -->
+
+<main class="contact-content">
+
+    <p class="kicker">04 / Get in touch</p>
+
+    <h1>Contact</h1>
+
+    <p class="contact-intro">
+        For collaborations, productions and inquiries:
+    </p>
+
+    <div class="contact-details">
+
+        <a
+            href="mailto:catalinaarribasciordia@gmail.com"
+            class="email"
+        >
+            catalinaarribasciordia@gmail.com
+        </a>
+
+        <a
+            href="tel:+34638257768"
+            class="phone"
+        >
+            +34 638 257 768
+        </a>
+
+    </div>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <span>
+        © 2026 Catalina Arribas Art Direction · Madrid
+    </span>
+
+    <a href="mailto:catalinaarribasciordia@gmail.com">
+        CONTACT ↗
+    </a>
+
+</footer>
+
+</body>
+</html>
