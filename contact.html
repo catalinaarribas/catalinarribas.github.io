@@ -71,12 +71,12 @@ nav a:hover {
     gap: 25px;
 }
 
-/* FULL WIDTH HEADER IMAGE */
+/* CONTACT HEADER */
 
 .contact-header {
-    width: 100vw;
-    height: clamp(300px, 55vw, 650px);
-    margin-left: calc(50% - 50vw);
+    width: 100%;
+    height: clamp(105px, 12vw, 190px);
+    position: relative;
     overflow: hidden;
 }
 
@@ -86,6 +86,30 @@ nav a:hover {
     height: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+.contact-header-content {
+    position: absolute;
+    left: 4%;
+    bottom: 22px;
+    z-index: 2;
+}
+
+.contact-header .kicker {
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0 0 8px;
+}
+
+.contact-header h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(35px, 5vw, 65px);
+    font-weight: 400;
+    line-height: 0.95;
+    margin: 0;
+    color: var(--text);
 }
 
 /* CONTACT CONTENT */
@@ -234,7 +258,7 @@ footer a:hover {
 </nav>
 
 
-<!-- FULL WIDTH HEADER IMAGE -->
+<!-- CONTACT HEADER -->
 
 <section class="contact-header">
 
@@ -242,6 +266,9 @@ footer a:hover {
         src="assets/contact-header.jpg"
         alt="Catalina Arribas — Contact"
     >
+
+    <div class="contact-header-content">
+    </div>
 
 </section>
 
